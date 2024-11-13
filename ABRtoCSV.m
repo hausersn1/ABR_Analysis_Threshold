@@ -3,20 +3,18 @@
 % Initialize
 fs = 8e3; %resampled to 8e3
 
-% Create the blank CSVs
-
-
-
-
-
 for f = 1:length(freqs)
 
-    % Change into directory
-    cd([datapath,'/Raw']);
 
     % load that freq CSV
 
     csvname = strcat(subj, '_', condition, '_', num2str(freqs(f)), '.csv');
+
+    t = (1:248)/fs; % seconds
+
+    cd D:\THESIS\Pitch_Diagnostics_Data\ABR\Chin\chinCSV
+    writecell([{'level'}, {'polarity'}, num2cell(t,1)], csvname)
+    cd([datapath,'/Raw']);
 
     %find files
     if freqs(f) == 0
@@ -25,9 +23,6 @@ for f = 1:length(freqs)
         datafiles = {dir(fullfile(cd,['p*',num2str(freqs(f)),'*.mat'])).name};
     end
 
-    t = (1:248)/fs; % seconds
-
-    M = [0, 0, t];
 
     for d = 1:length(datafiles)
         load(datafiles{d})
@@ -52,13 +47,16 @@ for f = 1:length(freqs)
         level = repmat(lev, size(all_trials,2),1);
         polarity = repmat([1; -1], size(all_pos,2),1);
 
-        M = [M; [level, polarity, all_trials']];
+        if d == 1
+            M = [level, polarity, all_trials'];
+        else
+            M = [M; [level, polarity, all_trials']];
+        end
 
     end
 
     cd D:\THESIS\Pitch_Diagnostics_Data\ABR\Chin\chinCSV
-    writematrix(M,csvname)
-
+    writematrix(M,csvname, "WriteMode", "append")
 
 end
 
