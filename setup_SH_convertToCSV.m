@@ -4,8 +4,8 @@ clear;
 set(0,'defaultfigurerenderer','opengl')
 
 %% Choose Chin and Run type
-subj = 'Q466';
-condition = 'Baseline';
+subj = 'Q365';
+condition = 'Old';
 
 export = 1; % Save data? 
 mode = 0;   % 0 - Process single chin,
@@ -42,7 +42,7 @@ switch mode
         suffix = [condition, filesep, subj, filesep];
         datapath = [prefix,suffix];
         
-        ABRtoCSV;      
+        convertToCSV;      
         
     case 1
         disp("Processing Single Chin Pre vs Post...")
@@ -62,7 +62,7 @@ switch mode
             ABR_audiogram_chin;
         end
         cd(cwd)
-        ABRtoCSV; 
+        convertToCSV; 
         
     case 2 % Process ALL data for ALL chins
         disp("Batch Processing every chin, pre and post...This might take a while!")
@@ -86,7 +86,7 @@ switch mode
                 condition = conds{c}; 
                 suffix = [condition, filesep,subj,filesep,'Raw'];
                 datapath = [prefix,suffix];
-                ABRtoCSV;
+                convertToCSV;
             end
         end
         cd(cwd)
