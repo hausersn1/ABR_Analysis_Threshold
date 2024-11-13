@@ -25,3 +25,10 @@ To run this code, open the *RUN_ABRaudiogram* script. Change the `subj`, `condit
 
 ### Plotting Functions
 *make_abr_summary_plots* and *plot_preVpost_abr* --> Just for plotting, but can be tweaked if you want to see things differently
+
+
+###ABR to CSV
+This is the set up to make the NEL data in to files compatible with ABRpresto
+- Adjust file directories so they grab your data. All p files for one frequency goes in the same csv. 
+- After running. you need to change A1 and B1 to *level* and *polarity*, respectively
+- code for ABR presto: https://github.com/Regeneron-RGM/ABRpresto

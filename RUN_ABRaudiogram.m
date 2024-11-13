@@ -8,7 +8,7 @@ subj = 'Q442';
 condition = 'Baseline';
 
 export = 1; % Save data? 
-mode = 1;   % 0 - Process single chin,
+mode = 0;   % 0 - Process single chin,
             % 1 - Process and Plot single chin pre/post,
             % 2 - batch process all
             % 3 - Plot Processed Group Data
